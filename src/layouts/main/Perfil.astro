@@ -1,0 +1,37 @@
+---
+interface Props {
+  urlPerfil: string
+}
+
+const { urlPerfil } = Astro.props
+---
+
+<figure>
+  <img 
+    src={urlPerfil} 
+    alt="Foto de perfil" 
+    loading="lazy"
+    decoding="async"
+    class="h-[130px] w-[130px] object-cover rounded-full image-perfil"
+  >
+</figure>
+
+<style>
+  .image-perfil {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeImage 1s ease forwards;
+    animation-delay: 0s;
+  }
+
+  @keyframes fadeImage {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

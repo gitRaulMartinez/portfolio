@@ -1,0 +1,84 @@
+---
+interface Props {
+  fullname: string
+  workposition: string
+}
+
+const { fullname, workposition } = Astro.props
+---
+<h1 class="text-2xl lg:text-4xl text-slate-700 text-center my-3 lg:my-5 dark:text-slate-100 mx-1">¡Hola, soy {fullname}!</h1>
+<div class="flex justify-center items-center gap-1 my-3">
+  <h2 class="text-xl lg:text-3xl text-slate-700 dark:text-slate-200 text-center text-effect whitespace-nowrap">{workposition}</h2>
+  <div class="bloque bg-slate-700 dark:bg-slate-200"></div>
+</div>
+
+<style>
+  .text-effect {
+    width: 24ch;
+    opacity: 0;
+    animation: typing 2s steps(24), visible 0.1s linear forwards;
+    animation-delay: 1s;
+    overflow: hidden;
+    font-weight: 400;
+  }
+
+  .bloque {
+    height: 0rem;
+    width: 0.2rem;
+    animation: blink 1.5s infinite;
+    animation-delay: 1s;
+  }
+
+  h1 {
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeY 1s ease forwards;
+    animation-delay: 0.5s;
+    
+  }
+
+  @keyframes fadeY {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes blink {
+    0% { height: 2rem; }
+    20% { height: 2rem; }
+    50% { height: 0rem; }
+    80% { height: 2rem; }
+    100% { height: 2rem; }
+  }
+
+  @keyframes blink-lg {
+      0% { height: 1.5rem; }
+      20% { height: 1.5rem; }
+      50% { height: 0rem; }
+      80% { height: 1.5rem; }
+      100% { height: 1.5rem; }
+    }
+
+  @keyframes visible {
+    from { opacity: 1; }
+    to { opacity: 1; }
+  }
+
+  @media screen and (max-width: 1024px){
+    .bloque {
+      animation: blink-lg 1.5s infinite;
+    }
+  }
+</style>

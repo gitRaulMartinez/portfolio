@@ -1,0 +1,142 @@
+<div class="absolute right-0 top-0 w-full h-full min-h-dvh overflow-hidden background dark:bg-slate-900">
+  <!-- 
+  <div class="hexagonal-container">
+    <div class="hexagon hexagon-main"></div>
+    <div class="hexagon hexagon-left"></div>
+    <div class="hexagon hexagon-left-top"></div>
+    <div class="hexagon hexagon-left-bottom"></div>
+    <div class="hexagon hexagon-right"></div>
+    <div class="hexagon hexagon-right-top"></div>
+    <div class="hexagon hexagon-right-bottom"></div>
+    <div class="hexagon hexagon-top"></div>
+    <div class="hexagon hexagon-bottom"></div>
+    <div class="hexagon hexagon-left-top-max"></div>
+    <div class="hexagon hexagon-left-bottom-max"></div>
+    <div class="hexagon hexagon-right-top-max"></div>
+    <div class="hexagon hexagon-right-bottom-max"></div>
+    <div class="cursor-background"></div>
+  </div>
+  -->
+  <div class="absolute inset-0 overflow-hidden h-1/2">
+    <div class="jumbo absolute -inset-[10px] opacity-50"></div>
+  </div>
+</div>
+
+<style is:global>
+  .background {
+    z-index: -10;
+  }
+  /*
+  body:hover .hexagon {
+    visibility: visible;
+  }
+
+  body:hover .cursor-background {
+    visibility: visible;
+    background: radial-gradient(circle, rgb(158, 158, 158) 0%, rgba(0,255,0,0) 70%);
+  }
+
+  .hexagonal-container {
+    --dimension: 100px; 
+    position: relative;
+    pointer-events: none;
+  }
+
+  .hexagon {
+    position: absolute;
+    z-index: -2;
+    top: -100%;
+    left: -100%;
+    visibility: hidden;
+    width: var(--dimension);
+    height: calc(var(--dimension) * 1.1);
+    margin: calc(var(--dimension) * 0.04) calc(var(--dimension) * 0.02);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: white;
+    pointer-events: none;
+  }
+
+  .cursor-background {
+    position: absolute;
+    z-index: -3;
+    top: -100%;
+    left: -100%;
+    visibility: hidden;
+    border-radius: 100rem;
+    height: 200px;
+    width: 200px;
+    pointer-events: none;
+  }
+  */
+
+  @keyframes jumbo {
+    from {
+        background-position: 50% 50%, 50% 50%;
+    }
+    to {
+        background-position: 350% 50%, 350% 50%;
+    }
+  }
+
+  .jumbo {
+    --stripes: repeating-linear-gradient(
+        100deg,
+        #fff 0%,
+        #fff 7%,
+        transparent 10%,
+        transparent 12%,
+        #fff 16%
+    );
+    --stripesDark: repeating-linear-gradient(
+        100deg,
+        #000 0%,
+        #000 7%,
+        transparent 10%,
+        transparent 12%,
+        #000 16%
+    );
+    --rainbow: repeating-linear-gradient(
+        100deg,
+        #60a5fa 10%,
+        #faf4ff 15%, /* #e879f9 15% */
+        #60a5fa 20%,
+        #5eead4 25%, /* #5eead4 */
+        #60a5fa 30%
+    );
+    background-image: var(--stripes), var(--rainbow);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+    filter: blur(10px) invert(100%);
+    mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .jumbo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rainbow);
+    background-size: 200%, 100%;
+    animation: jumbo 60s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+  }
+
+  .dark .jumbo {
+    background-image: var(--stripesDark), var(--rainbow);
+    filter: blur(10px) opacity(50%) saturate(200%);
+  }
+  .dark .jumbo::after {
+    background-image: var(--stripesDark), var(--rainbow);
+  }
+
+  @media screen and (max-width: 800px) {
+    .jumbo {
+      background-size: 600%, 300%;
+    }
+
+    .jumbo::after {
+      background-size: 400%, 200%;
+    }
+  }
+</style>
