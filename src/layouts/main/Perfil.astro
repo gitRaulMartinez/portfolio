@@ -12,7 +12,7 @@ const { urlPerfil } = Astro.props
     alt="Foto de perfil" 
     loading="lazy"
     decoding="async"
-    class="h-[120px] w-[120px] sm:h-[130px] sm:w-[130px] object-cover rounded-full image-perfil"
+    class="h-[120px] w-[120px] sm:h-[130px] sm:w-[130px] object-cover rounded-full image-perfil margin-top-perfil"
   >
 </figure>
 
@@ -22,6 +22,16 @@ const { urlPerfil } = Astro.props
     transform: translateY(-20px);
     animation: fadeImage 1s ease forwards;
     animation-delay: 0s;
+  }
+
+  .margin-top-perfil {
+    margin-top: 250px;
+  }
+
+  @media screen and (max-height: 700px) {
+    .margin-top-perfil {
+      margin-top: 150px;
+    }
   }
 
   @keyframes fadeImage {

@@ -1,0 +1,22 @@
+<div class="absolute top-5 right-1/2 translate-x-1/2 pattern-points text-slate-300 dark:text-slate-500 h-full">
+  <svg width="1500" height="100%">
+    <!-- Define el patrón -->
+    <defs>
+      <pattern id="puntos-redondos" width="50" height="50" patternUnits="userSpaceOnUse">
+        <!-- Crea un círculo con radio 3 y relleno con el color actual -->
+        <circle cx="25" cy="25" r="3" fill="currentColor" />
+      </pattern>
+    </defs>
+  
+    <!-- Aplica el patrón a un rectángulo -->
+    <rect x="0" y="0" width="1500" height="100%" fill="url(#puntos-redondos)" />
+  </svg>  
+</div>
+
+<style>
+  .pattern-points {
+    z-index: -20;
+    border-radius: 25rem;
+    overflow: hidden;
+  }
+</style>
