@@ -1,3 +1,9 @@
+---
+import LineTwo from '../lines/LineTwo.astro'
+import LineThree from '../lines/LineThree.astro'
+import Code from '../icons/Code.astro'
+---
+
 <div class="absolute w-full h-full content-drawing">
   <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" class="blob-main text-slate-200 dark:text-slate-700">
     <defs>
@@ -10,6 +16,15 @@
     </g>
   </svg>  
   <div class="square-main border-4 border-slate-800 dark:border-slate-300"></div>
+  <div class="absolute bottom-5 right-1/2 translate-x-1/2 rotate-180 text-slate-700 dark:text-slate-300">
+    <LineTwo />
+  </div>
+  <div class="absolute top-10 -left-2 sm:left-5 text-slate-700 rotate-45 dark:text-slate-300">
+    <LineThree />
+  </div>
+  <div class="absolute right-5 bottom-5 sm:right-20 sm:bottom-20 text-slate-800 dark:text-slate-300 -rotate-12">
+    <Code />
+  </div>
 </div>
 
 <style>
