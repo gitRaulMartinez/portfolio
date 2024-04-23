@@ -22,31 +22,31 @@ import LineSix from "../lines/LineSix.astro"
   </ul>
 </nav>
 <div class="block sm:hidden">
-  <button class="hover:bg-slate-100 rounded-full button-action relative h-10 w-10 overflow-hidden" type="button">
-    <div class="menu absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-all duration-500">
+  <button class="hover:bg-slate-100 rounded-full button-action relative h-10 w-10 overflow-hidden dark:hover:bg-slate-800" type="button">
+    <div class="menu absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-all duration-500 text-slate-700 dark:text-slate-200">
       <Menu />
     </div>
-    <div class="close absolute top-1/2 -translate-y-1/2 -right-1/2 translate-x-1/2 transition-all duration-500">
+    <div class="close absolute top-1/2 -translate-y-1/2 -right-1/2 translate-x-1/2 transition-all duration-500 text-slate-700 dark:text-slate-200">
       <Close />
     </div>
   </button>
 </div>
-<div class="w-full h-0 overflow-hidden bg-white nav-responsive transition-all">
+<div class="w-full h-0 overflow-hidden bg-white nav-responsive transition-all dark:bg-slate-900">
   <nav>
     <ul class="relative flex flex-col justify-star items-center gap-5 m-4">
       <li class="w-full text-center">
         <a 
           href="#inicio"
-          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40"
+          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40 dark:hover:bg-slate-800"
         >Inicio</a>
       </li>
       <li class="w-full text-center">
         <a 
           href="#proyectos"
-          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40"
+          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40 dark:hover:bg-slate-800"
         >Proyectos</a>
       </li>
-      <div class="absolute top-0 -translate-y-1/2 arrow transition-all">
+      <div class="absolute top-0 -translate-y-1/2 arrow transition-all text-slate-700 dark:text-slate-200">
         <LineSix />
       </div>
     </ul>
@@ -127,7 +127,7 @@ import LineSix from "../lines/LineSix.astro"
       menu.classList.add("left-1/2")
       showNavResponsive = false
 
-      navResponsive.classList.remove("h-[132px]","border-b","border-slate-200")
+      navResponsive.classList.remove("h-[132px]","border-b","border-slate-200","dark:border-slate-700")
       navResponsive.classList.add("h-0")
     }
     else{
@@ -138,7 +138,7 @@ import LineSix from "../lines/LineSix.astro"
       showNavResponsive = true
 
       navResponsive.classList.remove("h-0")
-      navResponsive.classList.add("h-[132px]","border-b","border-slate-200")
+      navResponsive.classList.add("h-[132px]","border-b","border-slate-200","dark:border-slate-700")
     }
   })
 
@@ -155,7 +155,7 @@ import LineSix from "../lines/LineSix.astro"
       menu.classList.add("left-1/2")
       showNavResponsive = false
 
-      navResponsive.classList.remove("h-[132px]","border-b","border-slate-200")
+      navResponsive.classList.remove("h-[132px]","border-b","border-slate-200","dark:border-slate-700")
       navResponsive.classList.add("h-0")
     }
   })
