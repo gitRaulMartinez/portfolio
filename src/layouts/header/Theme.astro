@@ -82,9 +82,10 @@ import ArrowDown from '../icons/ArrowDown.astro'
           type="button"
           @click="toDefault()"
           class="
-            flex items-center gap-4 justify-between py-4 px-4 hover:bg-slate-200/50 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
-            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-600 
+            flex items-center gap-4 justify-between py-4 px-4 border border-transparent hover:border-slate-200 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
+            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:border-slate-700
           "
+          :class="theme === 'default' ? 'bg-slate-100 dark:bg-slate-800' : ''"
         >
           <span class="py-1">Por defecto</span>
           <span 
@@ -98,9 +99,10 @@ import ArrowDown from '../icons/ArrowDown.astro'
           type="button"
           @click="toLight()"
           class="
-            flex items-center gap-4 justify-between py-4 px-4 hover:bg-slate-200/50 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
-            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-600 
+            flex items-center gap-4 justify-between py-4 px-4 border border-transparent hover:border-slate-200 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
+            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:border-slate-700
           "
+          :class="theme === 'light' ? 'bg-slate-100 dark:bg-slate-800' : ''"
         >
           <span class="py-1">Modo Claro</span>
           <span 
@@ -114,9 +116,10 @@ import ArrowDown from '../icons/ArrowDown.astro'
           type="button"
           @click="toDark()"
           class="
-            flex items-center gap-4 justify-between py-4 px-4 hover:bg-slate-200/50 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
-            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-600 
+            flex items-center gap-4 justify-between py-4 px-4 border border-transparent hover:border-slate-200 rounded-lg cursor-pointer text-slate-600 hover:text-slate-700
+            dark:text-slate-300 dark:hover:text-slate-100 dark:hover:border-slate-700
           "
+          :class="theme === 'dark' ? 'bg-slate-100 dark:bg-slate-800' : ''"
         >
           <span class="py-1">Modo Oscuro</span>
           <span 

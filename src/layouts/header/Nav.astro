@@ -31,7 +31,7 @@ import LineSix from "../lines/LineSix.astro"
     </div>
   </button>
 </div>
-<div class="w-full h-0 overflow-hidden bg-white nav-responsive transition-all dark:bg-slate-900">
+<div class="w-full h-0 border-slate-200 dark:border-slate-700 overflow-hidden bg-white nav-responsive transition-all dark:bg-slate-900">
   <nav>
     <ul class="relative flex flex-col justify-star items-center gap-5 m-4">
       <li class="w-full text-center">
@@ -67,7 +67,7 @@ import LineSix from "../lines/LineSix.astro"
   .nav-responsive {
     position: fixed;
     left: 0;
-    top: 57px;
+    top: 56px;
   }
 </style>
 
@@ -127,7 +127,7 @@ import LineSix from "../lines/LineSix.astro"
       menu.classList.add("left-1/2")
       showNavResponsive = false
 
-      navResponsive.classList.remove("h-[132px]","border-b","border-slate-200","dark:border-slate-700")
+      navResponsive.classList.remove("h-[132px]","border-b")
       navResponsive.classList.add("h-0")
     }
     else{
@@ -138,7 +138,7 @@ import LineSix from "../lines/LineSix.astro"
       showNavResponsive = true
 
       navResponsive.classList.remove("h-0")
-      navResponsive.classList.add("h-[132px]","border-b","border-slate-200","dark:border-slate-700")
+      navResponsive.classList.add("h-[132px]","border-b")
     }
   })
 
@@ -165,7 +165,7 @@ import LineSix from "../lines/LineSix.astro"
       const top = window.scrollY || document.documentElement.scrollTop
       const main:HTMLElement = document.getElementById('inicio')
       const project:HTMLElement = document.getElementById('proyectos')
-      if(top >= main.offsetTop && top < project.offsetTop){
+      if((top >= main.offsetTop || top >= 0) && top < project.offsetTop){
         setPositionLine('#inicio')
         setPositionArrow('#inicio')
       }
