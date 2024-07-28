@@ -1,26 +1,7 @@
----
-import LineThree from '../lines/LineThree.astro'
-import Code from '../icons/Code.astro'
----
-
 <div class="absolute w-full h-full content-drawing">
-  <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" class="blob-main text-slate-200 dark:text-slate-700">
-    <defs>
-      <clipPath id="a">
-        <path fill="currentColor" d="M865 687.5Q799 875 612.5 850T269 756Q112 687 83 486t141-326Q394 35 591 87t268.5 232.5Q931 500 865 687.5Z"/>
-      </clipPath>
-    </defs>
-    <g clip-path="url(#a)">
-      <path fill="currentColor" d="M865 687.5Q799 875 612.5 850T269 756Q112 687 83 486t141-326Q394 35 591 87t268.5 232.5Q931 500 865 687.5Z"/>
-    </g>
-  </svg>  
-  <div class="square-main border-4 border-slate-800 dark:border-slate-300"></div>
-  <div class="absolute -top-2 sm:top-10 -left-2 sm:left-5 text-slate-700 rotate-45 dark:text-slate-300">
-    <LineThree />
-  </div>
-  <div class="absolute right-5 bottom-5 sm:right-20 sm:bottom-20 text-slate-800 dark:text-slate-300 -rotate-12">
-    <Code />
-  </div>
+  <div class="space space-1"></div>
+  <div class="space space-2"></div>
+  <div class="space space-3"></div>
 </div>
 
 <style>
@@ -28,61 +9,51 @@ import Code from '../icons/Code.astro'
     z-index: -100;
     overflow: hidden;
     pointer-events: none;
-  }
-  
-  .blob-main { 
     position: absolute;
-    z-index: -100;
-    bottom: 0;
+    top: 0;
     left: 0;
-    transform: translateX(-50%) rotate(0deg);
-    width: 500px;
-    height: 500px;
-    /*animation: circle-rotate 16s linear infinite;*/
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .square-main {
+  .space {
+    width: var(--size);
+    height: var(--size);
+    background: #000;
+    box-shadow: var(--space-layer);
     position: absolute;
-    z-index: -100;
-    top: -10%;
-    right: 0;
-    transform: translateX(40%) rotate(45deg);
-    width: 400px;
-    height: 400px;
-    /*animation: square-rotate 16s linear infinite;*/
+    top: 0;
+    left: 0;
+    opacity: 75%;
+    animation: moveStars var(--duration) linear infinite;
+    border-radius: 10px;
   }
 
-  @keyframes circle-rotate {
-    from { transform: translateX(-50%) rotate(0deg); }
-    to { transform: translateX(-50%) rotate(360deg); }
-  }
-
-  @keyframes square-rotate {
-    from { transform: translateX(40%) rotate(0deg); }
-    to { transform: translateX(40%) rotate(360deg); }
-  }
-
-  @media screen and (max-width: 1024px) {
-    .blob-main {
-      width: 400px;
-      height: 400px;
-    }
-
-    .square-main {
-      width: 400px;
-      height: 400px;
-    }
-  }
-
-  @media screen and (max-width: 750px) {
-    .blob-main {
-      width: 250px;
-      height: 250px;
-    }
-
-    .square-main {
-      width: 250px;
-      height: 250px;
-    }
+  @keyframes moveStars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100vh); }
   }
 </style>
+
+<script>
+  const COLORS:string[] = ["#cbd5e1","#94a3b8","#64748b","#475569"]  
+  const generateSpaceLayer = (size: string, selector: string, totalStars:number, duration:string) => {
+    const layer = []
+    for(let i=0;i<totalStars;i++){
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)]
+      const x = Math.floor(Math.random() * 100)
+      const y = Math.floor(Math.random() * 100)
+      layer.push(`${x}vw ${y}vh 0 ${color}, ${x}vw ${y+100}vh 0 ${color}`)
+    }
+
+    const container:HTMLElement = document.querySelector(selector)
+    container.style.setProperty("--space-layer", layer.join(','))
+    container.style.setProperty("--size", size);
+    container.style.setProperty("--duration", duration);
+  }
+
+  generateSpaceLayer("1px",".space-1",80,"15s")
+  generateSpaceLayer("4px",".space-2",40,"25s")
+  generateSpaceLayer("8px",".space-3",10,"35s")
+</script>
