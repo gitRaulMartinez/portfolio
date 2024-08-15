@@ -18,17 +18,12 @@ import MongoDB from '../layouts/icons/MongoDB.astro'
 import Python from '../layouts/icons/Python.astro'
 import Flask from '../layouts/icons/Flask.astro'
 import Firebase from '../layouts/icons/Firebase.astro'
-
-import LineTwo from '../layouts/lines/LineTwo.astro'
 ---
 
 <Section classArray="flex flex-col justify-start items-center h-full w-full relative overflow-hidden" id="proyectos">
   <div class="flex flex-col justify-start items-stretch max-w-screen-lg w-full px-4 lg:px-6 mt-16">
-    <h2 class="text-center text-slate-700 text-3xl sm:text-4xl font-semibold mb-5 dark:text-slate-300">Mis Proyectos</h2>
-    <div class="flex justify-center items-center rotate-180 text-slate-700 dark:text-slate-300 mb-5">
-      <LineTwo />
-    </div>
-    <div class="flex flex-col justify-start items-stretch max-w-screen-lg w-full relative gap-4">
+    <h2 class="text-center text-slate-700 text-3xl sm:text-4xl font-semibold mb-10 dark:text-slate-300">Mis Proyectos</h2>
+    <div class="grid lg:grid-cols-3 justify-center lg:items-stretch items-center max-w-screen-lg w-full relative gap-4">
       <CardProject
         title="Code Oran - Seminario"
         description="Este proyecto es el resultado de mi seminario en la Tecnicatura Universitaria en Programación. Se trata de una plataforma web para la programación competitiva, donde los usuarios pueden participar en desafíos y competencias."
@@ -39,7 +34,7 @@ import LineTwo from '../layouts/lines/LineTwo.astro'
       >
       </CardProject>
       <CardProject
-        title="Posts - Digitalers Telecom"
+        title="Posts - IT Telecom"
         description="Este proyecto forma parte del curso de certificación en Node.js backend, impartido por Digitalers en asociación con Telecom IT. Consiste en una plataforma de redes sociales donde los usuarios pueden publicar contenido y compartirlo con otros."
         tags={["Digitalers","Telecom IT","Curso de backend"]}
         github="https://github.com/gitRaulMartinez/final-project"
@@ -56,7 +51,6 @@ import LineTwo from '../layouts/lines/LineTwo.astro'
         tools={[Python,Flask,Firebase]}
       >
       </CardProject>
-      <Pattern />
     </div>
   </div>
 </Section>
