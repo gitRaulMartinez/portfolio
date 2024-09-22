@@ -1,33 +1,179 @@
+---
+import Menu from "../icons/Menu.astro"
+import Close from "../icons/Close.astro"
+import LineSix from "../lines/LineSix.astro"
+---
+
 <nav class="hidden sm:block">
   <ul class="relative flex justify-end items-center gap-2 my-2">
     <li>
       <a 
         href="#inicio"
-        class:list={[
-          'block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400',
-        ]}
+        class="block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md"
       >Inicio</a>
     </li>
     <li>
       <a 
         href="#proyectos"
-        class:list={[
-          'block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400',
-        ]}
+        class="block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md"
       >Proyectos</a>
     </li>
     <div class="line bg-slate-900 dark:bg-slate-300"></div>
   </ul>
 </nav>
+<div class="block sm:hidden">
+  <button class="hover:bg-slate-100 rounded-full button-action relative h-10 w-10 overflow-hidden dark:hover:bg-slate-800" type="button">
+    <div class="menu absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-all duration-500 text-slate-700 dark:text-slate-200">
+      <Menu />
+    </div>
+    <div class="close absolute top-1/2 -translate-y-1/2 -right-1/2 translate-x-1/2 transition-all duration-500 text-slate-700 dark:text-slate-200">
+      <Close />
+    </div>
+  </button>
+</div>
+<div class="w-full h-0 border-slate-200 dark:border-slate-700 overflow-hidden bg-white nav-responsive transition-all dark:bg-slate-900">
+  <nav>
+    <ul class="relative flex flex-col justify-star items-center gap-5 m-4">
+      <li class="w-full text-center">
+        <a 
+          href="#inicio"
+          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40 dark:hover:bg-slate-800"
+        >Inicio</a>
+      </li>
+      <li class="w-full text-center">
+        <a 
+          href="#proyectos"
+          class="inline-block font-semibold py-2 px-4 text-base text-slate-600 dark:text-slate-400 rounded-md hover:bg-slate-100 max-w-40 dark:hover:bg-slate-800"
+        >Proyectos</a>
+      </li>
+      <div class="absolute top-0 -translate-y-1/2 arrow transition-all text-slate-700 dark:text-slate-200">
+        <LineSix />
+      </div>
+    </ul>
+  </nav>
+</div>
 
 <style>
   .line {
     position: absolute;
     bottom: -2px;
-    width: 30px;
+    width: 33px;
     left: 20px;
     height: 4px;
     border-radius: 100rem;
+    transition: all ease-in-out 0.3s;
+  }
+
+  .nav-responsive {
+    position: fixed;
+    left: 0;
+    top: 56px;
   }
 </style>
+
+<script>
+  let eventScroll = true
+  let cancelActiveEventScroll = null
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+			e.preventDefault()
+      eventScroll = false
+      var clickedAnchor:string = this.getAttribute('href')
+      setPositionLine(clickedAnchor || '')
+      setPositionArrow(clickedAnchor || '')
+			document.querySelector(clickedAnchor).scrollIntoView({
+        behavior: 'smooth'
+      })
+      history.pushState({}, '', clickedAnchor)
+      clearTimeout(cancelActiveEventScroll)
+      cancelActiveEventScroll = setTimeout(() => {
+        eventScroll = true
+      }, 1000);
+    })
+	})
+
+  const setPositionLine = (ancla:string) : void => {
+    const line:HTMLElement = document.querySelector('.line');
+    switch(ancla){
+      case '#inicio': line.style.left = 20 + 'px'; line.style.width = 33 + 'px'; break;
+      case '#proyectos': line.style.left = 73 + 30 + 'px'; line.style.width = 62 + 'px'; break;
+      default: line.style.left = 20 + 'px'; line.style.width = 33 + 'px'; break;
+    }
+  }
+
+  const setPositionArrow = (ancla:string) => {
+    const arrow:HTMLElement = document.querySelector('.arrow');
+    switch(ancla){
+      case '#inicio': arrow.style.top = 15 + 'px'; arrow.style.left = 50 + '%'; arrow.style.transform = 'translateX(-105px)';  break;
+      case '#proyectos': arrow.style.top = 75 + 'px'; arrow.style.left = 50 + '%'; arrow.style.transform = 'translateX(-140px)'; break;
+      default: arrow.style.top = 15 + 'px'; arrow.style.left = 50 + '%'; arrow.style.transform = 'translateX(-105px)';  break;
+    }
+  }
+
+  var ancla:string = window.location.hash;
+  setPositionLine(ancla || '')
+  setPositionArrow(ancla || '')
+
+  const buttonAction:HTMLElement = document.querySelector('.button-action')
+  let showNavResponsive = false
+  buttonAction.addEventListener("click",() => {
+    const menu:HTMLElement = document.querySelector(".menu")
+    const close:HTMLElement = document.querySelector(".close")
+    const navResponsive:HTMLElement = document.querySelector('.nav-responsive')
+    if(showNavResponsive){
+      close.classList.remove("right-1/2")
+      close.classList.add("-right-1/2")
+      menu.classList.remove("-left-1/2")
+      menu.classList.add("left-1/2")
+      showNavResponsive = false
+
+      navResponsive.classList.remove("h-[132px]","border-b")
+      navResponsive.classList.add("h-0")
+    }
+    else{
+      menu.classList.remove("left-1/2")
+      menu.classList.add("-left-1/2")
+      close.classList.remove("-right-1/2")
+      close.classList.add("right-1/2")
+      showNavResponsive = true
+
+      navResponsive.classList.remove("h-0")
+      navResponsive.classList.add("h-[132px]","border-b")
+    }
+  })
+
+  document.addEventListener('click', (event: MouseEvent) => {
+    const header:HTMLElement = document.querySelector('header')
+    const targetElement = event.target as HTMLElement
+    if (header && !header.contains(targetElement)) {
+      const menu:HTMLElement = document.querySelector(".menu")
+      const close:HTMLElement = document.querySelector(".close")
+      const navResponsive:HTMLElement = document.querySelector('.nav-responsive')
+      close.classList.remove("right-1/2")
+      close.classList.add("-right-1/2")
+      menu.classList.remove("-left-1/2")
+      menu.classList.add("left-1/2")
+      showNavResponsive = false
+
+      navResponsive.classList.remove("h-[132px]","border-b")
+      navResponsive.classList.add("h-0")
+    }
+  })
+
+  window.addEventListener('scroll', () => {
+    if(eventScroll){
+      const top = window.scrollY || document.documentElement.scrollTop
+      const main:HTMLElement = document.getElementById('inicio')
+      const project:HTMLElement = document.getElementById('proyectos')
+      if((top >= main.offsetTop || top >= 0) && top < project.offsetTop){
+        setPositionLine('#inicio')
+        setPositionArrow('#inicio')
+      }
+      else{
+        setPositionLine('#proyectos')
+        setPositionArrow('#proyectos')
+      }
+    }
+  })
+</script>
 

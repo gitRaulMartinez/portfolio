@@ -22,15 +22,17 @@ import '@fontsource-variable/open-sans'
 	<body class="bg-white dark:bg-slate-900">
 		<slot />
 	</body>
+	<script src="../js/main"></script>
 </html>
 
 <style is:global>
 	body {
   	font-family: 'Roboto Mono Variable', monospace;
+		position: relative;
 	}
 </style>
 
-<script>
+<script is:inline>
 	const html = document.querySelector('html')
 	if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) || (localStorage.getItem('theme') && localStorage.getItem('theme') === 'dark')) {
 		html.classList.add('dark')
