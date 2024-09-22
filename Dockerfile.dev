@@ -1,0 +1,31 @@
+# Usar imagen base de Node.js slim
+FROM node:20.17.0-bullseye-slim
+
+# Crear carpeta de trabajo
+WORKDIR /app
+
+# Instalar utilidades adicionales, Git, Oh My Bash y Powerline Fonts
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    fonts-powerline \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configuración global de Git
+RUN git config --global user.email "rauldeoran17@gmail.com" && \
+    git config --global user.name "Raul Martinez"
+
+# Instalar Oh My Bash
+RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+# Cambiar el tema a Agnoster
+RUN sed -i 's/OSH_THEME=.*/OSH_THEME="agnoster"/' ~/.bashrc
+
+# Exponer /app como volumen
+VOLUME ["/app"]
+
+# Exponer puerto 4321
+EXPOSE 4321
+
+# Ejecutar bash para mantener el contenedor activo y personalizado con Oh My Bash
+CMD ["bash"]
