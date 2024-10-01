@@ -1,0 +1,117 @@
+---
+import AstroSVG from '../../svgs/AstroSVG.astro';
+---
+
+<div class="
+  absolute left-1/2 top-1/2 translate-x-[50px] lg:translate-x-[100px] translate-y-[-320px] lg:translate-y-[-370px]
+  flex justify-center items-center rounded-xl bg-white/10
+  w-[55px] h-[55px] sm:w-[60px] sm:h-[60px]
+  border border-1 border-slate-200 p-2 backdrop-filter backdrop-blur-md astro-svg dark:border-slate-700
+">
+  <AstroSVG />
+</div>
+
+<style>
+  .astro-svg {
+    transition: all ease-in-out 0.5s;
+    animation: astro-svgInFull 1s ease forwards;
+    opacity: 0;
+    animation-delay: 1.75s;
+  }
+
+  @keyframes astro-svgInFull {
+    from {
+      opacity: 0;
+      transform: translate(105px,-390px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(100px,-370px);
+    }
+  }
+
+  @keyframes astro-svgIn880 {
+    from {
+      opacity: 0;
+      transform: translate(65px,-310px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(60px,-290px);
+    }
+  }
+
+  @keyframes astro-svgIn1024 {
+    from {
+      opacity: 0;
+      transform: translate(65px,-360px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(60px,-340px);
+    }
+  }
+
+  @keyframes astro-svgIn1024and880 {
+    from {
+      opacity: 0;
+      transform: translate(65px,-310px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(60px,-290px);
+    }
+  }
+
+  @keyframes astro-svgIn512 {
+    from {
+      opacity: 0;
+      transform: translate(30px,-360px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(10px,-340px);
+    }
+  }
+
+  @media screen and (max-height: 880px) {
+    .astro-svg {
+      animation: astro-svgIn880 1s ease forwards;
+      animation-delay: 1.75s;
+    }
+  }
+
+  @media screen and (max-height: 735px) {
+    .astro-svg {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .astro-svg {
+      animation: astro-svgIn1024 1s ease forwards;
+      animation-delay: 1.75s;
+    }
+  }
+
+  @media screen and (max-width: 1024px) and (max-height: 880px) {
+    .astro-svg {
+      animation: astro-svgIn1024and880 1s ease forwards;
+      animation-delay: 1.75s;
+    }
+  }
+
+  @media screen and (max-width: 512px) {
+    .astro-svg {
+      animation: astro-svgIn512 1s ease forwards;
+      animation-delay: 1.75s;
+    }
+  }
+
+  @media screen and (max-width: 512px) and (max-height: 880px) {
+    .astro-svg {
+      animation: astro-svgIn1024and880 1s ease forwards;
+      animation-delay: 1.75s;
+    }
+  }
+</style>

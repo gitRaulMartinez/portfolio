@@ -1,0 +1,104 @@
+---
+import Vue from '../../svgs/Vue.astro'
+---
+
+<div class="
+  absolute left-1/2 top-1/2 
+  flex justify-center items-center rounded-xl bg-white/10 vue
+  w-[55px] h-[55px] sm:w-[60px] sn:h-[60px]
+  border border-1 border-slate-200 p-2 backdrop-filter backdrop-blur-md dark:border-slate-700
+">
+  <Vue />
+</div>
+
+<style>
+  .vue {
+    transition: all ease-in-out 0.5s;
+    animation: vueInFull 1s ease forwards;
+    opacity: 0;
+    animation-delay: 2.5s;
+  }
+
+  @keyframes vueInFull {
+    from {
+      opacity: 0;
+      transform: translate(250px,270px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(230px,250px);
+    }
+  }
+
+  @keyframes vueIn700 {
+    from {
+      opacity: 0;
+      transform: translate(250px,250px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(230px,230px);
+    }
+  }
+
+  @keyframes vueIn1024 {
+    from {
+      opacity: 0;
+      transform: translate(200px,270px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(180px,250px);
+    }
+  }
+
+  @keyframes vueIn1024and700 {
+    from {
+      opacity: 0;
+      transform: translate(200px,250px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(180px,230px);
+    }
+  }
+
+  @keyframes vueIn512 {
+    from {
+      opacity: 0;
+      transform: translate(120px,250px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(100px,230px);
+    }
+  }
+
+  @media screen and (max-height: 700px) {
+    .vue {
+      animation: vueIn700 1s ease forwards;
+      animation-delay: 2.5s;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .vue {
+      animation: vueIn1024 1s ease forwards;
+      animation-delay: 2.5s;
+    }
+  }
+
+  @media screen and (max-width: 1024px) and (max-height: 700px) {
+    .vue {
+      animation: vueIn1024and700 1s ease forwards;
+      animation-delay: 2.5s;
+    }
+  }
+
+  @media screen and (max-width: 512px) {
+    .vue {
+      animation: vueIn512 1s ease forwards;
+      animation-delay: 2.5s;
+    }
+  }
+</style>

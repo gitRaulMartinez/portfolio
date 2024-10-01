@@ -1,0 +1,68 @@
+---
+import Tailwind from '../../svgs/Tailwind.astro'
+---
+
+<div class="
+  absolute left-1/2 top-1/2
+  flex justify-center items-center rounded-xl bg-white/10
+  w-[55px] h-[55px] sm:w-[60px] sm:h-[60px]
+  border border-1 border-slate-200 p-2 backdrop-filter backdrop-blur-md tailwind dark:border-slate-700
+">
+  <Tailwind />
+</div>
+
+<style>
+  .tailwind {
+    transition: all ease-in-out 0.5s;
+    animation: tailwindInFull 1s ease forwards;
+    opacity: 0;
+    animation-delay: 2s;
+  }
+
+  @keyframes tailwindInFull {
+    from {
+      opacity: 0;
+      transform: translate(270px,-220px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(250px,-200px);
+    }
+  }
+
+  @keyframes tailwindIn1024 {
+    from {
+      opacity: 0;
+      transform: translate(170px,-220px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(150px,-200px);
+    }
+  }
+
+  @keyframes tailwindIn512 {
+    from {
+      opacity: 0;
+      transform: translate(120px,-220px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(100px,-200px);
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .tailwind {
+      animation: tailwindIn1024 1s ease forwards;
+      animation-delay: 2s;
+    }
+  }
+
+  @media screen and (max-width: 512px) {
+    .tailwind {
+      animation: tailwindIn512 1s ease forwards;
+      animation-delay: 2s;
+    }
+  }
+</style>

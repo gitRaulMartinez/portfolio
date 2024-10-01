@@ -1,0 +1,19 @@
+---
+import Circle from '../drawing/Circle.astro'
+import Carousel from '../drawing/Carousel.astro'
+import BackgroundSquare from '../drawing/BackgroundSquare.astro'
+---
+
+<div class="absolute w-full h-full content-drawing">
+  <!-- <Circle /> -->
+  <!-- <Carousel /> -->
+  <BackgroundSquare />
+</div>
+
+<style>
+  .content-drawing {
+    z-index: -100;
+    overflow: hidden;
+    pointer-events: none;
+  }
+</style>
