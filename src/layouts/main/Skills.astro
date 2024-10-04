@@ -1,12 +1,22 @@
-<div class="flex flex-row justify-center gap-1 mt-2 skills-animation">
-  <span class="text-xs lg:text-sm text-slate-600 py-1 px-3 rounded-full bg-slate-100 dark:text-slate-300 dark:bg-slate-700">
-    Web
-  </span>
-  <span class="text-xs lg:text-sm text-slate-600 py-1 px-3 rounded-full bg-slate-100 dark:text-slate-300 dark:bg-slate-700">
-    Servidor
-  </span>
-  <span class="text-xs lg:text-sm text-slate-600 py-1 px-3 rounded-full bg-slate-100 dark:text-slate-300 dark:bg-slate-700">
-    Android
+---
+const skills = ['Diseño UX/UI', 'Frontend', 'Backend', 'Desarrollo Móvil'];
+---
+
+<div class="flex-row justify-center items-center gap-1 mt-2 skills-animation hidden sm:flex">
+  {skills.map((skill, index) => (
+    <>
+      <span class="text-base text-slate-700 dark:text-slate-100">
+        {skill}
+      </span>
+      {index < skills.length - 1 && (
+        <span class="text-base text-slate-600 dark:text-slate-300 px-1">•</span>
+      )}
+    </>
+  ))}
+</div>
+<div class="flex-row justify-center items-center gap-1 mt-2 skills-animation flex sm:hidden">
+  <span id="rotating-skill" class="text-base text-slate-700 dark:text-slate-100 fade-in-right">
+    {skills[0]}
   </span>
 </div>
 
@@ -25,4 +35,55 @@
       opacity: 1;
     }
   }
+
+  .fade-in-right {
+    animation: fadeInRight 1s ease forwards;
+  }
+
+  .fade-out-left {
+    animation: fadeOutLeft 1s ease forwards;
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeOutLeft {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
 </style>
+
+<script>
+  const skills = ['Diseño UX/UI', 'Frontend', 'Backend', 'Desarrollo Móvil'];
+  let currentIndex = 0;
+  const skillElement = document.getElementById('rotating-skill');
+
+  function rotateSkills() {
+    skillElement.classList.remove('fade-in-right');
+    skillElement.classList.add('fade-out-left');
+
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % skills.length;
+      skillElement.textContent = skills[currentIndex];
+
+      skillElement.classList.remove('fade-out-left');
+      skillElement.classList.add('fade-in-right');
+    }, 1000);
+  }
+
+  setInterval(rotateSkills, 3000);
+</script>

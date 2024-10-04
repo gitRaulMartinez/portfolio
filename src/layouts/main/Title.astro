@@ -7,21 +7,22 @@ interface Props {
 const { fullname, workposition } = Astro.props
 ---
 <div class="relative">
-  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-700 text-center my-3 lg:my-5 dark:text-slate-200 mx-1">¡Hola, soy {fullname}!</h1>
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 text-center my-3 lg:my-5 dark:text-slate-200 mx-1">¡Hola, soy {fullname}!</h1>
 </div>
-<div class="flex justify-center items-center gap-1 mt-3 relative lg:mb-16 mb-5">
-  <h2 class="text-xl lg:text-3xl text-slate-700 dark:text-slate-300 text-center text-effect whitespace-nowrap">{workposition}</h2>
-  <div class="bloque bg-slate-700 dark:bg-slate-300"></div>
+<div class="flex justify-center items-center gap-1 mt-3 relative lg:mb-8 mb-5">
+  <h2 class="text-3xl sm:text-4xl lg:text-5xl text-slate-800 dark:text-slate-300 text-center text-effect whitespace-nowrap">{workposition}</h2>
+  <div class="bloque bg-slate-700 dark:bg-slate-300 mt-1 lg:mt-2"></div>
 </div>
 
 <style>
   .text-effect {
-    width: 24ch;
+    width: 13ch;
     opacity: 0;
-    animation: typing 2s steps(24), visible 0.1s linear forwards;
+    animation: typing 1s steps(13), visible 0.1s linear forwards;
     animation-delay: 1s;
     overflow: hidden;
     font-weight: 400;
+    font-family: 'Bungee Shade', system-ui;
   }
 
   .bloque {
@@ -67,11 +68,11 @@ const { fullname, workposition } = Astro.props
   }
 
   @keyframes blink {
-    0% { height: 2rem; }
-    20% { height: 2rem; }
+    0% { height: 2.3rem; }
+    20% { height: 2.3rem; }
     50% { height: 0rem; }
-    80% { height: 2rem; }
-    100% { height: 2rem; }
+    80% { height: 2.3rem; }
+    100% { height: 2.3rem; }
   }
 
   @keyframes blinkLG {
