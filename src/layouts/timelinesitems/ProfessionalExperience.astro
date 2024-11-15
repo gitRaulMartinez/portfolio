@@ -1,0 +1,78 @@
+---
+import ItemTimeline from '../ItemTimeline.astro'
+
+import CardProject from '../projects/CardProject.astro'
+
+import AngularIcon from '../icons/technologies/AngularTEC.astro'
+import NodejsIcon from '../icons/technologies/NodejsTEC.astro'
+import MongoDBIcon from '../icons/technologies/MongoDBTEC.astro'
+import VueIcon from '../icons/technologies/VueTec.astro'
+import WordpressIcon from '../icons/technologies/WordpressTEC.astro'
+import BitnamiIcon from '../icons/technologies/BitnamiTEC.astro'
+import MariaDBIcon from '../icons/technologies/MariaDBTEC.astro'
+
+import Work from '../icons/Work.astro'
+import TieIcon from '../icons/TieIcon.astro'
+
+const technologies = {
+  ANGULAR: { name: "Angular", icon: AngularIcon },
+  NODEJS: { name: "Nodejs", icon: NodejsIcon },
+  MONGODB: { name: "Mongodb", icon: MongoDBIcon },
+  VUE: { name: "Vuejs", icon: VueIcon },
+  WORDPRESS: { name: "Wordpress", icon: WordpressIcon },
+  BITNAMI: { name: "Bitnami", icon: BitnamiIcon },
+  MARIADB: { name: "MariaDB", icon: MariaDBIcon }
+}
+
+const projects = [
+  {
+    title: "Safetynova",
+    description: "Inspecciónes de seguridad digital Front/Back",
+    link: "https://safetynova.com",
+    logo: "https://storage.googleapis.com/cdn-ar/portfolio/logo-safetynova.webp",
+    technologies: [
+      technologies.ANGULAR,
+      technologies.NODEJS,
+      technologies.MONGODB
+    ]
+  },
+  {
+    title: "CPPT Salta",
+    description: "Comité para la Prevención de la Tortura en Salta - Web Noticias",
+    link: "https://comitecontralatorturasalta.com.ar/",
+    logo: "https://storage.googleapis.com/cdn-ar/portfolio/logo-cpt.png",
+    technologies: [
+      technologies.VUE,
+      technologies.NODEJS,
+      technologies.MONGODB
+    ]
+  },
+  {
+    title: "Municipalidad de Orán",
+    description: "Web de Noticias e informes",
+    link: "https://oran.gob.ar/",
+    logo: "https://storage.googleapis.com/cdn-ar/portfolio/oran_logo.png",
+    technologies: [
+      technologies.WORDPRESS,
+      technologies.BITNAMI,
+      technologies.MARIADB
+    ]
+  }
+]
+---
+
+<ItemTimeline title='Experiencia Profesional' icon={ TieIcon } bgColor='bg-amber-800'>
+  <section class="max-w-full grid grid-cols-1 lg:grid-cols-2 gap-4 pr-6 lg835:pr-0">
+    { 
+      projects.map((project) => 
+        <CardProject 
+          title = { project.title }
+          description = { project.description }
+          link = { project.link }
+          logo = { project.logo }
+          technologies = { project.technologies }
+        />
+      )
+    }
+  </section>
+</ItemTimeline>

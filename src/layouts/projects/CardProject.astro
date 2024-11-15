@@ -1,153 +1,48 @@
 ---
+interface Technology {
+  name: string;
+  icon: any;
+}
+
 interface Props {
   title: string,
-  tags: string[],
   description: string,
-  url?: string,
-  github?: string,
-  imagePreview: string
-  tools: any[]
+  logo?: string,
+  link?: string,
+  technologies: Technology[]
 }
 
 const project = Astro.props
 ---
 
-<div 
-  class="grid-template-card border border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-800/90 md:max-w-md w-full p-5"
-  data-aos="zoom-in"
+<a 
+  class="flex flex-col border border-slate-300 p-3 rounded-lg gap-3 hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"
+  href={ project.link }
+  target="_blank"
 >
-  <div class="block-1">
-    <h2 class="text-slate-800 text-lg font-semibold mb-1 dark:text-slate-300">{ project.title }</h2>
-    <div class="flex justify-start items-center gap-1 mb-1 whitespace-nowrap flex-wrap">
-      { project.tags.map((tag) => <span class="bg-slate-50 text-slate-700 rounded-full text-xs py-0.5 px-2.5 font-normal dark:bg-slate-700 dark:text-slate-300">{tag}</span>) }
+  <div class="flex justify-between">
+    <div class="flex justify-start items-center gap-2">
+      { project.logo && 
+        <img 
+          src={ project.logo } 
+          alt="Logo" 
+          width="35"
+          height="35" 
+          class="rounded-full object-contain w-9 h-9"
+        />
+      }
+      <h2 class="text-slate-800 text-sm sm:text-base lg:text-lg font-semibold dark:text-slate-300">{ project.title }</h2>
     </div>
   </div>
-  <div class="block-2 flex flex-col items-start">
-    <div class="flex justify-start items-center gap-3 mb-2">
-      { project.url && <a href={project.url} target="_blank" class="text-blue-500 bg-blue-50 font-medium text-sm hover:bg-blue-100 py-1 px-2.5 rounded-full">proyecto.com.ar</a> }
-      { project.github && <a href={project.github} target="_blank" class="bg-slate-700 text-slate-100 text-sm font-medium hover:bg-slate-800 py-1 px-2.5 rounded-full dark:bg-slate-200 dark:text-slate-700 dark:hover:bg-slate-100">Github</a> }
-    </div>
-    <div class="flex justify-start items-center gap-3">
-      { project.tools.map((Tool) => 
-        <span class="flex justify-center items-center p-2 bg-slate-100 text-slate-900 rounded-full h-[40px] w-[40px] dark:bg-slate-700 dark:text-slate-300">
-          { <Tool/> }
-        </span>
-      )}
-    </div>
+  <div class="flex mb-1">
+    <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{ project.description }</p>
   </div>
-  <!-- 
-  <div class="block-3">
-    <img 
-      src={project.imagePreview}
-      alt="Image project"
-      class="img-responsive border border-slate-200 dark:border-slate-800"
-    >
+  <div class="flex justify-start items-center gap-3 mt-auto overflow-hidden">
+    { project.technologies.map((tech) => 
+      <div class="flex justify-start items-center gap-1 rounded-full bg-slate-200 py-2 px-3 dark:bg-slate-700">
+        <tech.icon />
+        <span class="text-slate-800 text-xxs sm:text-xs dark:text-slate-300">{ tech.name }</span>
+      </div>
+    )}
   </div>
-  -->
-</div>
-
-<style>
-  .img-responsive {
-    aspect-ratio: 16 / 9;
-    width: 462px;
-    max-width: 100%;
-    height: 260px;
-    border-radius: 0.25rem;
-  }
-
-  .grid-template-card {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto 1fr;
-    gap: 10px;
-    border-radius: 14px;
-  }
-
-  .block-1 {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-  }
-
-  .block-2 {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-  }
-
-  .block-3 {
-    grid-row: 1 / 3;
-    grid-column: 2 / 3;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .grid-template-card {
-      grid-template-columns: auto 1fr;
-    }
-
-    .block-1 {
-      grid-row: 1 / 2;
-      grid-column: 1 / 3;
-    }
-
-    .block-2 {
-      grid-row: 2 / 3;
-      grid-column: 2 / 3;
-    }
-
-    .block-3 {
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-    }
-  }
-
-  @media screen and (max-width: 875px) {
-    .grid-template-card {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto auto;
-    }
-
-    .block-1 {
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-    }
-
-    .block-2 {
-      grid-row: 3 / 4;
-      grid-column: 1 / 2;
-    }
-
-    .block-3 {
-      grid-row: 1 / 2;
-      grid-column: 1 / 2;
-    }
-
-    .img-responsive {
-      margin: auto;
-    }
-  }
-
-  @media screen and (max-width: 535px) {
-    .grid-template-card {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .block-1 {
-      padding: 0 24px;
-    }
-
-    .block-2 {
-      padding: 0 24px 24px;
-    }
-
-    .img-responsive {
-      border-radius: 0px;
-      border: none;
-      height: auto;
-      width: 100%;
-    }
-
-    .hidden-text {
-      display: none;
-    }
-  }
-</style>
+</a>

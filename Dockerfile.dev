@@ -4,19 +4,31 @@ FROM node:20.17.0-bullseye-slim
 # Crear carpeta de trabajo
 WORKDIR /app
 
-# Instalar utilidades adicionales, Git, Oh My Bash y Powerline Fonts
+# Instalar utilidades adicionales, Git, Oh My Bash, Powerline Fonts y locales
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     fonts-powerline \
+    locales \
     && rm -rf /var/lib/apt/lists/*
+
+# Configurar locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # Configuración global de Git
 RUN git config --global user.email "rauldeoran17@gmail.com" && \
     git config --global user.name "Raul Martinez"
 
-# Instalar Oh My Bash
-RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+# Instalar Oh My Bash y prevenir problemas de actualización
+RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" && \
+    rm -f /root/.oh-my-bash/log/update.lock && \
+    mkdir -p /root/.oh-my-bash/log && \
+    touch /root/.oh-my-bash/log/update.lock && \
+    chmod 400 /root/.oh-my-bash/log/update.lock
 
 # Cambiar el tema a Agnoster
 RUN sed -i 's/OSH_THEME=.*/OSH_THEME="agnoster"/' ~/.bashrc

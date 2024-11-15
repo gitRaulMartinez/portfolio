@@ -1,0 +1,79 @@
+---
+import ItemTimeline from '../ItemTimeline.astro'
+
+import CardProject from '../projects/CardProject.astro'
+
+import HTMLIcon from '../icons/technologies/HTMLTEC.astro'
+import PHPIcon from '../icons/technologies/PHPTEC.astro'
+import MariaDBICon from '../icons/technologies/MariaDBTEC.astro'
+import NodejsIcon from '../icons/technologies/NodejsTEC.astro'
+import MongoDBIcon from '../icons/technologies/MongoDBTEC.astro'
+import PostmanIcon from '../icons/technologies/PostmanTEC.astro'
+import PythonIcon from '../icons/technologies/PythonTEC.astro'
+import FlaskIcon from '../icons/technologies/FlaskTEC.astro'
+import FirebaseIcon from '../icons/technologies/FirebaseTEC.astro'
+
+import RocketIcon from '../icons/Rocket.astro'
+
+
+const technologies = {
+  HTML: { name: "HTML", icon: HTMLIcon },
+  PHP: { name: "PHP", icon: PHPIcon },
+  MARIADB: { name: "MariaDB", icon: MariaDBICon },
+  NODEJS: { name: "Nodejs", icon: NodejsIcon },
+  MONGODB: { name: "Mongodb", icon: MongoDBIcon },
+  POSTMAN: { name: "Postman", icon: PostmanIcon },
+  PYTHON: { name: "Python", icon: PythonIcon },
+  FLASK: { name: "Flask", icon: FlaskIcon },
+  FIREBASE: { name: "Firebase", icon: FirebaseIcon }
+}
+
+const projects = [
+  {
+    title: "Codeoran",
+    description: "Trabajo final de carrera",
+    link: "https://github.com/gitRaulMartinez/codeoran",
+    technologies: [
+      technologies.HTML,
+      technologies.PHP,
+      technologies.MARIADB
+    ]
+  },
+  {
+    title: "Post",
+    description: "Proyecto final curso Backend IT",
+    link: "https://github.com/gitRaulMartinez/final-project",
+    technologies: [
+      technologies.NODEJS,
+      technologies.MONGODB,
+      technologies.POSTMAN
+    ]
+  },
+  {
+    title: "Rutas del sabor",
+    description: "Mil Programadores con Python",
+    link: "https://github.com/gitRaulMartinez/rutas_del_sabor",
+    technologies: [
+      technologies.PYTHON,
+      technologies.FLASK,
+      technologies.FIREBASE
+    ]
+  }
+]
+---
+
+<ItemTimeline title='Proyecto personales' icon={ RocketIcon } bgColor='bg-indigo-500'>
+  <section class="max-w-full grid grid-cols-1 lg:grid-cols-2 gap-4 pr-6 lg835:pr-0">
+    { 
+      projects.map((project) => 
+        <CardProject 
+          title = { project.title }
+          description = { project.description }
+          link = { project.link }
+          logo = { project.logo }
+          technologies = { project.technologies }
+        />
+      )
+    }
+  </section>
+</ItemTimeline>

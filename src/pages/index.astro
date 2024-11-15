@@ -4,18 +4,16 @@ import HeaderPortfolio from '../components/HeaderPortfolio.astro'
 
 import MainPortfolio from '../components/MainPortfolio.astro'
 import ProjectsPortfolio from '../components/ProjectsPortfolio.astro'
+import Timeline from '../components/Timeline.astro'
 
 import Footer from '../layouts/footer/Footer.astro'
-
-import Background from '../layouts/projects/Background.astro'
 ---
 
 <Layout title="Portafolio - Raúl Martínez">
-	<Background />
   <HeaderPortfolio />
 	<main>
 		<MainPortfolio></MainPortfolio>
-		<ProjectsPortfolio></ProjectsPortfolio>
+		<Timeline />
 	</main>
 	<Footer />
 </Layout>

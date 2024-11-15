@@ -1,0 +1,59 @@
+---
+import CopyIcon from '../icons/CopyIcon.astro'
+
+const { value, icon: Icon } = Astro.props
+---
+
+<div 
+  class="relative flex justify-start items-center rounded-md pl-3 pr-2 py-2 border border-slate-300 w-full max-w-sm dark:border-slate-700" 
+  x-data="{ 
+    copied: false, 
+    showTooltip: false,
+    tooltipText: 'Copiar',
+    copyText() {
+      const inputEl = $el.querySelector('input');
+      navigator.clipboard.writeText(inputEl.value);
+      this.copied = true;
+      this.tooltipText = 'Copiado';
+    
+      setTimeout(() => {
+        if (this.showTooltip) {
+          this.showTooltip = false;
+        }
+        this.copied = false;
+        this.tooltipText = 'Copiar';
+      }, 3000);
+    }
+  }"
+>
+  <span class="text-slate-700 dark:text-slate-300"> 
+    {<Icon />}
+  </span>
+  
+  <input 
+    type="text" 
+    readonly 
+    value={value} 
+    class="text-sm lg:text-base focus:outline-none rounded-sm px-3 py-1.5 text-slate-700 w-full bg-transparent dark:text-slate-300"
+  >
+  <button 
+    @click="copyText()"
+    @mouseenter="!copied && (showTooltip = true)"
+    @mouseleave="!copied && (showTooltip = false)"
+    :class="{'pointer-events-none bg-slate-500': copied}"
+    class="ml-2 p-1.5 text-sm bg-slate-700 text-white hover:bg-slate-800 rounded-md dark:bg-slate-100 dark:text-slate-700 dark:hover:bg-slate-50"
+  >
+    <CopyIcon />
+  </button>
+  <span 
+    x-show="showTooltip"
+    x-text="tooltipText"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="absolute text-sm -right-3 top-1/2 rounded translate-x-full -translate-y-1/2  text-slate-700 bg-slate-200 px-3 py-2 pointer-events-none">
+  </span>
+</div>
