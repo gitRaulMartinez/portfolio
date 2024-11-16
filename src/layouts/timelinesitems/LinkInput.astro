@@ -39,6 +39,12 @@ const { value, icon: Icon } = Astro.props
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0"
-    class="absolute text-sm -right-3 top-1/2 rounded translate-x-full -translate-y-1/2  text-slate-700 bg-slate-200 px-3 py-2 pointer-events-none">
+    class="
+        fixed sm:absolute 
+        bottom-2 right-1/2 translate-x-1/2 translate-y-0
+        sm:bottom-1/2 sm:-right-3 sm:translate-x-full sm:translate-y-1/2
+        text-sm rounded text-slate-700 bg-slate-200 px-3 py-2 pointer-events-none
+      "
+    >
   </span>
 </div>
